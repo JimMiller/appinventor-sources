@@ -552,11 +552,7 @@ public class BuildServer {
 
     int port = commandLineOptions.port;
     SelectorThread threadSelector = GrizzlyServerFactory.create("http://localhost:" + port + "/");
-    String hostAddress = "localhost";
-    try {
-    hos	tAddress = "http://" + InetAddress.getLocalHost().getHostAddress();
-    } catch (Exception e) {
-    }
+    String hostAddress = InetAddress.getLocalHost().getHostAddress();
     LOG.info("App Inventor Build Server - Version: " + GitBuildId.getVersion());
     LOG.info("App Inventor Build Server - Git Fingerprint: " + GitBuildId.getFingerprint());
     LOG.info("Running at: http://" + hostAddress + ":" + port + "/buildserver");
@@ -565,9 +561,9 @@ public class BuildServer {
     } else {
       LOG.info("Maximum simultanous builds = " + commandLineOptions.maxSimultaneousBuilds);
     }
-    LOG.info("Visit: " + hostAddress + ":" + port +
+    LOG.info("Visit: http://" + hostAddress + ":" + port +
       "/buildserver/health for server health");
-    LOG.info("Visit: " + hostAddress + ":" + port +
+    LOG.info("Visit: http://" + hostAddress + ":" + port +
       "/buildserver/vars for server values");
     LOG.info("Server running");
   }
